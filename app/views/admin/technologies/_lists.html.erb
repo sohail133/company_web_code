@@ -1,0 +1,44 @@
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Sr.</th>
+      <th>Technology Image</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% technologies.each_with_index do |technology, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td>
+            <%= image_tag technology.image, size:'100x100' if technology.image.attached? %>        
+        </td>
+        <td>
+          <% if technology.status == 'inactive' %>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitches ">
+              <label class="custom-control-label" for="customSwitches"></label>
+            </div>
+          <%elsif technology.status == 'active' %>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitches " checked>
+              <label class="custom-control-label" for="customSwitches"></label>
+            </div>
+          <%end%>
+        </td>                
+        <td>                     
+          <%= link_to edit_admin_technology_path(technology), title:"Edit", class:'btn btn-secondary' do %>
+            <i class="fas fa-edit"></i>
+          <%end%>
+          <%= link_to admin_technology_path(technology), title:"Delete", method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' do %>
+            <i class="fa fa-trash"></i>
+          <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<div class="dataTables_paginate paging_simple_numbers float-right" id="dataTable_paginate">
+  <%= will_paginate technologies, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>   

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+      <h4 class="m-0 font-weight-bold text-mute"><i class="fa fa-user"></i> <%= @team.name %></h4>
+      <p class="m-0 font-weight-bold text-mute"><i class="fa fa-user-tie"></i> <%= @team.designation %></p>      
+      <p class="card-text">
+        <%= content_tag :i, '', class: "fas fa-#{(@team.status == 'active') ? 'check-circle text-success' : 'pause-circle text-danger'}" %>
+        <span class="font-weight-bold text-capitalize <%= @team.status == 'inactive' ? 'text-danger' : 'text-success' %>">
+          <%= @team.status %>
+        </span>
+      </p>     
+    </div>
+    <div class="row g-0">
+      <div class="col-md-6">
+        <div class="card-body">
+          <%= image_tag @team.image, class:'card-img' if @team.image.attached? %>        
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fab fa-twitter"></i> Twitter</h5>
+            <% if @team.twitter_url.present? %>                 
+              <p class="card-text"><%= link_to @team.twitter_url, @team.twitter_url %></p>
+            <% else %>
+              <p class="card-text">N/A</p>
+            <%end%>
+          <h5 class="card-title"><i class="fab fa-instagram"></i> Instagram</h5>
+          <% if @team.instagram_url.present? %>                 
+            <p class="card-text"><%= link_to @team.instagram_url, @team.instagram_url %></p>
+          <% else %>
+            <p class="card-text">N/A</p>
+          <%end%>
+
+          <h5 class="card-title"><i class="fab fa-facebook"></i> Facebook</h5>
+          <% if @team.facebook_url.present? %>                 
+            <p class="card-text"><%= link_to @team.facebook_url, @team.facebook_url %></p>
+          <% else %>
+            <p class="card-text">N/A</p>
+          <%end%>
+          <h5 class="card-title"><i class="fab fa-linkedin"></i> Linkedin</h5>
+          <% if @team.linkedin_url.present? %>                 
+            <p class="card-text"><%= link_to @team.linkedin_url, @team.linkedin_url %></p>
+          <% else %>
+            <p class="card-text">N/A</p>
+          <%end%>
+        </div>
+      </div>     
+    </div>
+    <div class="card-header py-3">
+      <a href="<%= admin_teams_path %>" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+        <span class="text">Back</span>
+      </a>
+    </div>
+  </div>
+</div>

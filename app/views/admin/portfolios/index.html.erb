@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center text-mute">
+        <i class="fa fa-project-diagram h3 mr-1"></i>
+        <h3 class="font-weight-bold">Portfolios</h3>
+      </div>   
+      <a href="<%= new_admin_portfolio_path %>" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white"><i class="fas fa-plus"></i></span>
+        <span class="text">New Portfolio</span>
+      </a>
+    </div>
+    <div class="card-body">
+      <%= render 'admin/shared/filters' %>
+      <div class="table-responsive services-table">
+        <%= render 'lists', portfolios: @portfolios %>
+      </div>
+    </div>
+  </div>
+</div>

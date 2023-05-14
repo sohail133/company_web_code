@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+      <h4 class="m-0 font-weight-bold text-mute"><i class="fa fa-star-half-alt"></i> Review</h4>
+      <p class="card-text">
+        <%= content_tag :i, '', class: "fas fa-#{(@review.status == 'active') ? 'check-circle text-success' : 'pause-circle text-danger'}" %>
+        <span class="font-weight-bold text-capitalize <%= @review.status == 'inactive' ? 'text-danger' : 'text-success' %>">
+          <%= @review.status %>
+        </span>
+      </p>     
+    </div>
+    <div class="row g-0">
+      <div class="col-md-6">
+        <div class="card-body">
+          <%= image_tag @review.image, class:'card-img' if @review.image.attached? %>        
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title text-dark"><i class="fa fa-handshake"></i> Client Name</h5>
+          <p class="card-text"><%= @review.name %></p>          
+          <h5 class="card-title text-dark"><i class="fa fa-user-tie"></i> Designation</h5>
+          <p class="card-text"><%= @review.designation %></p>
+          <h5 class="card-title text-dark"><i class="fa fa-star"></i>  Reviews</h5>
+          <p class="card-text"><%= @review.review %></p>          
+        </div>
+      </div>     
+    </div>
+    <div class="card-header py-3">
+      <a href="<%= admin_client_reviews_path %>" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+        <span class="text">Back</span>
+      </a>    
+    </div>
+  </div>
+</div>

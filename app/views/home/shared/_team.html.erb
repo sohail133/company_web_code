@@ -1,0 +1,29 @@
+<section id="team" class="team">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Team</h2>
+      <p>Check our Team</p>
+    </div>
+    <div class="row">
+      <% @teams.each do |team| %>
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-img">
+              <%= image_tag team.image, class:'img-fluid', alt:'Team Image' if team.image.attached? %>
+              <div class="social">
+                <a href="<%= team.twitter_url %>"><i class="ri-twitter-fill"></i></a>
+                <a href="<%= team.facebook_url %>"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="<%= team.instagram_url %>"><i class="ri-instagram-line"></i></a>
+                <a href="<%= team.linkedin_url %>"><i class="ri-linkedin-box-fill"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4><%= team.name %></h4>
+              <span><%= team.designation %></span>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</section>

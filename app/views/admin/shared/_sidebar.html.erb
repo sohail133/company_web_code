@@ -1,0 +1,80 @@
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%= admin_dashboards_path%>">
+    <div class="sidebar-brand-icon">
+      <%= image_tag 'bitkueue.png', size:'50x50', class:'img-profile rounded-circle' %>
+    </div>
+    <div class="sidebar-brand-text mx-3">Bit Kueue <sup></sup></div>
+  </a>
+  <hr class="sidebar-divider my-0">
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/dashboards' %>">
+    <a class="nav-link" href="<%= admin_dashboards_path %>">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/services' %>">
+    <%= link_to admin_services_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-server"></i>
+      <span>Services</span>
+    <% end %>
+  </li>
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/portfolios' || params[:controller] == 'admin/categories' %>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-briefcase"></i>
+      <span>Portfolios</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-dark py-2 collapse-inner rounded">
+        <a class="collapse-item bg-dark text-white 
+          <%= 'active' if params[:controller] == 'admin/portfolios' %>" 
+          href="<%= admin_portfolios_path %>"><i class="fa fa-briefcase"></i> Portfolio
+        </a>
+        <a class="collapse-item bg-dark text-white 
+          <%= 'active' if params[:controller] == 'admin/categories' %>" 
+          href="<%= admin_categories_path %>"><i class="fa fa-list-alt"></i> Category
+        </a>
+      </div>
+    </div>    
+  </li>
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/teams' %>">
+    <%= link_to admin_teams_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-users"></i>
+      <span>Teams</span>
+    <% end %>
+  </li>
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/technologies' %>">
+    <%= link_to admin_technologies_path, class: "nav-link" do %>
+      <i class="fab fa-fw fa-react"></i>
+      <span>Technology</span>
+    <% end %>
+  </li>  
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/client_reviews' %>">
+    <%= link_to admin_client_reviews_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-smile"></i>
+      <span>Reviews</span>
+    <% end %>
+  </li>        
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/contacts' %>">
+    <%= link_to admin_contacts_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-address-book"></i>
+      <span>Contact Us</span>
+    <% end %>
+  </li>
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/settings' %>">
+    <%= link_to admin_settings_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Settings</span>
+    <% end %>
+  </li>
+  <li class="nav-item <%= 'active' if params[:controller] == 'admin/abouts' %>">
+    <%= link_to admin_abouts_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-info-circle"></i>
+      <span>About Us</span>
+    <% end %>
+  </li>
+  <hr class="sidebar-divider d-none d-md-block">
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0 transition" id="sidebarToggle"></button>
+  </div>
+</ul>

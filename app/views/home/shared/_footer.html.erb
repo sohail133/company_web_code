@@ -1,0 +1,71 @@
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-info">
+            <h3>BK<span>.</span></h3>
+            <p>
+              <%= @setting.location %><br><br>
+              <strong>Phone:</strong> <%= @setting.phone_number%><br>
+              <strong>Email:</strong> <%= @setting.email%><br>
+            </p>
+            <div class="social-links mt-3">
+              <% if @setting.social_urls['twitter_url'].present? %>
+                <a href="<%= @setting.social_urls['twitter_url'] %>" target="_blank" class="twitter"><i class="ri-twitter-fill"></i></a>
+              <% end %>
+              <% if @setting.social_urls['facebook_url'].present? %>
+                <a href="<%= @setting.social_urls['facebook_url'] %>" target="_blank" class="facebook"><i class="ri-facebook-fill"></i></a>
+              <% end %>
+              <% if @setting.social_urls['instagram_url'].present? %>
+                <a href="<%= @setting.social_urls['instagram_url'] %>" target="_blank" class="instagram"><i class="ri-instagram-line"></i></a>
+              <% end %>
+              <% if @setting.social_urls['skype_url'].present? %>
+                <a href="<%= @setting.social_urls['skype_url'] %>" target="_blank" class="google-plus"><i class="ri-skype-fill"></i></a>
+              <% end %>
+              <% if @setting.social_urls['linkedin_url'].present? %>
+                <a href="<%= @setting.social_urls['linkedin_url'] %>" target="_blank" class="linkedin"><i class="ri-linkedin-box-fill"></i></a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="ri-arrow-right-s-line"></i> <a href="#">Home</a></li>
+            <li><i class="ri-arrow-right-s-line"></i> <a href="#about">About us</a></li>
+            <li><i class="ri-arrow-right-s-line"></i> <a href="#services">Services</a></li>
+            <li><i class="ri-arrow-right-s-line"></i> <a href="#portfolio">Portfolios</a></li>
+            <li><i class="ri-arrow-right-s-line"></i> <a href="#team">Teams</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <% @services.each_with_index do |service, index| %>
+              <% if index < 5 %>
+                <li><i class="ri-arrow-right-s-line"></i> 
+                  <a href="<%= service_path(service)%>"><%= service.title %></a>
+                </li>
+              <%end%>
+            <%end%>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+          <form action="" method="post">
+            <input type="email" name="email"><input type="submit" value="Subscribe">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <%= raw @setting.copyright if @setting.copyright.present? %>
+  </div>
+</footer>
+<%# <div id="preloader"></div> %>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+  <i class="ri-arrow-up-line"></i>
+</a>

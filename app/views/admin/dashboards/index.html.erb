@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center text-mute">
+      <i class="fa fa-tachometer-alt h3 mr-1"></i>
+      <h3 class="font-weight-bold">Dashboard</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <a href="#">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Total Subscribers</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-bell fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <a href="<%= admin_portfolios_path %>">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                  Total Portfolios</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @portfolios_count %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <a href="<%= admin_services_path %>">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                  Total Services
+                </div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= @services_count %></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <a href="<%= admin_technologies_path %>">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                  Total Technologies</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @technologies_count %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fab fa-react fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <a href="<%= admin_contacts_path %>">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Total Contact Us (Pending)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @contacts_pending_count %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-comments fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <a href="<%= admin_contacts_path %>">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                  Total Contact Us (Accepted)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @contacts_accepted_count %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-comments fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <a href="<%= admin_contacts_path %>">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                  Total Contact Us (Rejected)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @contacts_rejected_count %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-comments fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

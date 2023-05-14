@@ -1,0 +1,37 @@
+<div class="text-center">
+  <h1 class="h4 font-weight-bold text-gray-900 mb-4">
+    <i class="fab fa-react"></i> Technology</h1>
+</div>
+<%= form_with(model: [ :admin, technology ], local: true) do |form| %>
+  <% if technology.errors.any? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p><i class="fa fa-exclamation"></i> <%= pluralize(technology.errors.count, "error") %>: Unable to save changes.</p>
+      <ul>
+        <% technology.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.file_field :image, class:'form-control form-control-user' %>
+    <% if technology.image.attached? %>
+      <p class="mt-2">Image is attached</p>
+    <% else %>
+      <p class="mt-2">No Image attached</p>
+    <%end%>
+  </div>
+  <div class="form-group">
+    <%= form.select :status, Technology.statuses.keys.to_a.map {|status| [status.humanize, status]},{include_blank: 'Select Status'}, class:'form-control form-control-user', required: true %>
+  </div>     
+  <div class="button-group py-2 d-flex justify-content-between align-items-center">                                                                                                                                                             
+    <a href="<%= admin_technologies_path %>" class="btn btn-dark btn-icon-split">
+      <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+      <span class="text">Back</span>
+    </a>
+    <%= form.submit class: 'btn btn-dark' %>
+  </div>
+<%end%>

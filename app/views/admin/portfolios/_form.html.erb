@@ -1,0 +1,55 @@
+<div class="text-center">
+  <h1 class="h4 font-weight-bold text-gray-900 mb-4">
+    <i class="fa fa-project-diagram"></i> Portfolio</h1>
+</div>
+<%= form_with(model: [ :admin, portfolio ], local: true) do |form| %>
+  <% if portfolio.errors.any? %>
+    <div  class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p><i class="fa fa-exclamation"></i> <%= pluralize(portfolio.errors.count, "error") %>: Unable to save changes.</p>
+      <ul>
+        <% portfolio.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.text_field :title, class:'form-control form-control-user', required: true, placeholder: 'Enter Title...' %>
+  </div>
+  <div class="form-group">
+    <%= form.select "category_id",options_for_select(Category.all.map{|c| [c.title, c.id]}, @portfolio.category_id),{ include_blank: 'Select Category' }, class:'form-control form-control-user' %>                                        
+  </div>
+  <div class="form-group">
+    <%= form.text_field :client, class:'form-control form-control-user', required: true, placeholder: 'Enter Client Name...' %>
+  </div>
+  <div class="form-group">
+    <%= form.date_field :project_date, class:'form-control form-control-user', required: true %>
+  </div> 
+  <div class="form-group">
+    <%= form.text_field :project_url, class:'form-control form-control-user', required: true, placeholder: 'Enter URl...' %>
+  </div>                                                                                                                       
+  <div class="form-group">
+    <%= form.text_area :description, class:'form-control form-control-user', required: true, placeholder:'Add Description' %>
+  </div>
+  <div class="form-group">
+    <%= form.file_field :images, multiple: true, class:'form-control form-control-user' %>
+    <% if @portfolio.images.attached? %>
+      <p class="float-right mt-2"><%= @portfolio.images.count %> Files attached</p>
+    <% else %>
+      <p class="float-right mt-2">No images attached</p>
+    <%end%>
+  </div>
+  <div class="form-group">
+    <%= form.select :status, Portfolio.statuses.keys.to_a.map {|status| [status.humanize, status]},{include_blank: 'Select Status'}, class:'form-control form-control-user', required: true %>
+  </div>
+  <div class="button-group py-2 d-flex justify-content-between align-items-center">                                                                                                                                                             
+    <a href="<%= admin_portfolios_path %>" class="btn btn-dark btn-icon-split">
+      <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+      <span class="text">Back</span>
+    </a>
+    <%= form.submit class: 'btn btn-dark' %>
+  </div>
+<%end%>

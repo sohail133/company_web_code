@@ -1,0 +1,55 @@
+<div class="text-center">
+  <h1 class="h4 font-weight-bold text-gray-900 mb-4">
+    <i class="fa fa-user-tie"></i> Team</h1>
+</div>
+<%= form_with(model: [ :admin, team ], local: true) do |form| %>
+  <% if team.errors.any? %>
+    <div  class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p><i class="fa fa-exclamation"></i> <%= pluralize(team.errors.count, "error") %>: Unable to save changes.</p>
+      <ul>
+        <% team.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.text_field :name, class:'form-control form-control-user', required: true, placeholder: 'Enter Name...' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :designation, class:'form-control form-control-user', required: true, placeholder:'Add Designation' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :twitter_url, class:'form-control form-control-user', placeholder:'Add Twitter URL' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :facebook_url, class:'form-control form-control-user', placeholder:'Add Facebook URL' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :instagram_url, class:'form-control form-control-user', placeholder:'Add Instagram URL' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :linkedin_url, class:'form-control form-control-user', placeholder:'Add Linkedin URL' %>
+  </div>
+  <div class="form-group">
+    <%= form.file_field :image, class:'form-control form-control-user' %>
+    <% if @team.image.attached? %>
+      <p class="mt-2">Image is attached</p>
+    <% else %>
+      <p class="mt-2">No Image attached</p>
+    <%end%>
+  </div>
+  <div class="form-group">
+    <%= form.select :status, Team.statuses.keys.to_a.map {|status| [status.humanize, status]},{include_blank: 'Select Status'}, class:'form-control form-control-user', required: true %>
+  </div>     
+  <div class="button-group py-2 d-flex justify-content-between align-items-center">                                                                                                                                                             
+    <a href="<%= admin_teams_path %>" class="btn btn-dark btn-icon-split">
+      <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+      <span class="text">Back</span>
+    </a>
+    <%= form.submit class: 'btn btn-dark' %>
+  </div>
+<%end%>

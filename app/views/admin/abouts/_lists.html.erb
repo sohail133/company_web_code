@@ -1,0 +1,45 @@
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+        <th>Sr.</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% abouts.each_with_index do |about, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%=about.title%></td>
+        <td>
+          <% if about.status == 'inactive' %>
+            <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitches ">
+            <label class="custom-control-label" for="customSwitches"></label>
+            </div>
+          <%elsif about.status == 'active' %>
+            <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitches " checked>
+            <label class="custom-control-label" for="customSwitches"></label>
+            </div>
+          <%end%>
+        </td>                
+        <td>
+          <%= link_to admin_about_path(about), title:"View", class:'btn btn-success' do %>
+            <i class="fas fa-eye"></i>
+          <%end%>                       
+          <%= link_to edit_admin_about_path(about), title:"Edit", class:'btn btn-secondary' do %>
+            <i class="fas fa-edit"></i>
+          <%end%>
+          <%= link_to admin_about_path(about), title:"Delete", method: :delete, data: { confirm: 'Are you sure?',toggle: "tooltip" }, class:'btn btn-danger' do %>
+            <i class="fa fa-trash"></i>
+          <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<div class="dataTables_paginate paging_simple_numbers float-right" id="dataTable_paginate">
+  <%= will_paginate abouts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>    

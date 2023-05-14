@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: bit_kueue
+
+test:
+  <<: *default
+  database: bit_kueue_test
+
+production:
+  <<: *default
+  database: bit_kueue_production
+  username: ruby-rails-sample
+  password: <%= ENV['RUBY-RAILS-SAMPLE_DATABASE_PASSWORD'] %>

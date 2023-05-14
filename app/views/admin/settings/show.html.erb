@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+      <h4 class="m-0 font-weight-bold text-mute"><i class="fa fa-cog"></i> Setting</h4>
+      <p class="card-text">
+        <%= content_tag :i, '', class: "fas fa-#{(@setting.status == 'active') ? 'check-circle text-success' : 'pause-circle text-danger'}" %>
+        <span class="font-weight-bold text-capitalize <%= @setting.status == 'inactive' ? 'text-danger' : 'text-success' %>">
+          <%= @setting.status %>
+        </span>
+      </p>     
+    </div>
+    <div class="row g-0">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h5 class="card-title text-dark"><i class="fas fa-map-marker-alt"></i> Location</h5>
+          <p class="card-text"><%= @setting.location %></p>
+          <h5 class="card-title text-dark"><i class="fa fa-envelope"></i> Email</h5>
+          <p class="card-text"><%= mail_to @setting.email %></p>
+          <h5 class="card-title text-dark"><i class="fa fa-mobile"></i> Phone Number</h5>
+          <p class="card-text"><%= @setting.phone_number %></p>
+          <h5 class="card-title text-dark"><i class="fa fa-copyright"></i> Copyright</h5>
+          <p class="card-text"><%= raw @setting.copyright %></p>                 
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+            <h5 class="card-title text-dark"><i class="fab fa-facebook"></i> Facebook</h5>
+          <% if @setting.social_urls['facebook_url'].present? %>
+            <p class="card-text"><%= @setting.social_urls['facebook_url'] %></p>
+          <% else %>
+            <p class="card-text">N/A</p>
+          <% end %>
+            <h5 class="card-title text-dark"><i class="fab fa-twitter"></i> Twitter</h5>
+          <% if @setting.social_urls['twitter_url'].present?%>
+            <p class="card-text"><%= @setting.social_urls['twitter_url'] %></p>
+          <% else %>
+            <p class="card-text">N/A</p>
+          <% end %>
+
+          <h5 class="card-title text-dark"><i class="fab fa-instagram"></i> Instagram</h5>
+          <% if @setting.social_urls['instagram_url'].present? %>
+            <p><%= @setting.social_urls['instagram_url'] %></p>
+          <% else %>
+            <p>N/A</p>
+          <% end %>
+
+          <h5 class="card-title text-dark"><i class="fab fa-linkedin"></i> LinkedIn</h5>
+          <% if @setting.social_urls['linkedin_url'].present? %>
+            <p><%= @setting.social_urls['linkedin_url'] %></p>
+          <% else %>
+            <p>N/A</p>
+          <% end %>
+          <h5 class="card-title text-dark"><i class="fab fa-skype"></i> Skype</h5>
+          <% if @setting.social_urls['skype_url'].present? %>
+            <p><%= @setting.social_urls['skype_url'] %></p>
+          <% else %>
+            <p>N/A</p>
+          <% end %>
+        </div>      
+      </div>      
+    </div>
+    <div class="card-header py-3">
+      <a href="<%= admin_settings_path %>" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+        <span class="text">Back</span>
+      </a>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+<section id="clients" class="clients">
+  <div class="container" data-aos="zoom-in">
+    <div class="clients-slider swiper">
+      <div class="swiper-wrapper align-items-center">
+        <% @technologies.each do |technology| %>
+          <div class="swiper-slide">
+            <%= image_tag technology.image, class:'img-fluid', alt:'Technology Image' if technology.image.attached? %>
+          </div>
+        <%end%>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>

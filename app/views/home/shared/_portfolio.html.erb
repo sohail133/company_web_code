@@ -1,0 +1,43 @@
+<section id="portfolio" class="portfolio">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Portfolio</h2>
+      <p>Check our Portfolio</p>
+    </div>
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="portfolio-flters">
+          <li data-filter="*" class="filter-active">All</li>
+          <% @categories.each do |category|%>
+            <li data-filter=".<%= category.title.parameterize %>"><%= category.title %></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+      <% @portfolios.each do |portfolio|%>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app <%= portfolio.category.title.parameterize %>">
+          <div class="portfolio-wrap">
+            <%= image_tag portfolio.images.first, class:'img-fluid', alt:'Portfolio Image' if portfolio.images.attached? %>
+            <div class="portfolio-info">
+              <h4><%= portfolio.title %></h4>
+              <p><%= portfolio.category.title %></p>
+              <div class="portfolio-links">
+                <% if portfolio.images.attached? %>
+                  <% portfolio.images.each_with_index do |image, index| %>
+                    <a href="<%= url_for(image) %>" data-gallery="portfolioGallery" class="portfolio-lightbox" title="<%= portfolio.title %>">
+                      <% if index == 0 %>
+                        <i class="ri-add-line"></i>
+                      <%end%>
+                    </a>
+                  <% end %>
+                <% end %>
+                <a href="<%= portfolio_path(portfolio) %>" title="More Details"><i class="ri-links-fill"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</section>

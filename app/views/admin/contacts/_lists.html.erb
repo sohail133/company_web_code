@@ -1,0 +1,64 @@
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Sr.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% contacts.each_with_index do |contact, index| %>
+      <tr class="<%= 'bg-light font-weight-bold' if !contact.read %>">
+        <td><%= index + 1 %></td>
+        <td><%= contact.name %><%= ' <i class="fa fa-circle fa-xs fa-fw text-primary"></i>'.html_safe unless contact.read %></td>
+        <td>
+          <%= mail_to contact.email%>
+          <div class="small text-mute"><i class="fa fa-clock"></i> <%= time_ago_in_words(contact.created_at, include_seconds: true)%> ago</div>                
+        </td>
+        <td>
+          <% status = contact.status %>
+          <%= content_tag :i, '', class: "fas fa-#{status == 'accepted' ? 'check-circle text-success' : status == 'pending' ? 'question-circle text-primary' : 'times-circle text-danger'}" %>
+          <span class="<%= status == 'rejected' ? 'text-danger' : status == 'accepted' ? 'text-success' : 'text-primary' %>">
+          <%= status.titleize %>
+          </span>
+        </td>
+        <td class="d-flex justify-content-around flex-wrap">
+          <% if contact.status == 'pending' %>                
+            <%= link_to admin_contact_path(contact, status: 'accepted'), method: :put, class: 'btn btn-success', title: 'Accepted' do %>
+                <i class="fas fa-check"></i>
+            <% end %>
+            <%= link_to admin_contact_path(contact, status: 'rejected'), method: :put, class: 'btn btn-danger', title: 'Rejected' do %>
+                <i class="fas fa-times-circle"></i>
+            <% end %>
+          <% elsif contact.status == 'accepted' %>
+            <%= link_to admin_contact_path(contact, status: 'rejected'), method: :put, class: 'btn btn-danger', title: 'Rejected' do %>
+                <i class="fas fa-times-circle"></i>
+            <% end %>
+          <% end %>
+          <%= link_to admin_contact_path(contact), class:'btn btn-success', title:'Show' do %>
+            <i class="fa fa-eye"></i>
+          <%end%>
+          <%= link_to admin_contact_path(contact), title:"Delete", method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' do %>
+            <i class="fa fa-trash"></i>
+          <%end%>
+          <%= form_tag mark_as_admin_contact_path(contact), method: :patch do %>
+            <% if contact.read %>
+              <button type="submit" class="btn btn-info" title="Mark as Unread">
+                <i class="fas fa-envelope-open"></i>
+              </button>                        
+            <% else %>
+              <button type="submit" class="btn btn-info" title="Mark as Read">
+                <i class="fas fa-check-circle"></i>
+              </button>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<div class="dataTables_paginate paging_simple_numbers float-right" id="dataTable_paginate">
+  <%= will_paginate contacts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div> 

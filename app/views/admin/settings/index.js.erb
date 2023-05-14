@@ -1,0 +1,6 @@
+$('.services-table').html('<%= j(render 'lists', settings: @settings)%>');
+$('.services-data-table').DataTable({
+  searching: false,
+  lengthChange: false,
+  paging: false
+});

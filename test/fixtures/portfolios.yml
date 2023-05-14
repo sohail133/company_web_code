@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  client: MyString
+  project_date: 2023-03-29 15:29:52
+  project_url: MyString
+  description: MyString
+  category: one
+
+two:
+  title: MyString
+  client: MyString
+  project_date: 2023-03-29 15:29:52
+  project_url: MyString
+  description: MyString
+  category: two

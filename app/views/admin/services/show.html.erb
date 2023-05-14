@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+      <h4 class="m-0 font-weight-bold text-mute"><i class="fa fa-server"></i> Service</h4>
+      <p class="card-text">
+        <%= content_tag :i, '', class: "fas fa-#{(@service.status == 'active') ? 'check-circle text-success' : 'pause-circle text-danger'}" %>
+        <span class="font-weight-bold text-capitalize <%= @service.status == 'inactive' ? 'text-danger' : 'text-success' %>">
+          <%= @service.status %>
+        </span>
+      </p>      
+    </div>
+    <div class="row g-0">
+      <div class="col-md-4">
+        <div class="card-body">
+          <%= image_tag @service.image, class:'card-img' if @service.image.attached? %>        
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title text-dark"><i class="fa fa-clipboard"></i> Service Name</h5>
+          <p class="card-text"><%= @service.title %></p>                   
+          <h5 class="card-title text-dark"><i class="fa fa-align-left"></i> Description</h5>
+          <p class="card-text"><%= raw @service.description %></p>
+        </div>
+      </div>     
+    </div>
+    <div class="card-header py-3">
+      <a href="<%= admin_services_path %>" class="btn btn-dark btn-icon-split">
+        <span class="icon text-white"><i class="fas fa-arrow-left"></i></span>
+        <span class="text">Back</span>
+      </a>
+    </div>
+  </div>
+</div>

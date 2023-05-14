@@ -1,0 +1,28 @@
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Sr.</th>
+      <th>Title</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% categories.each_with_index do |category, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%=category.title%></td>
+        <td>
+          <%= link_to edit_admin_category_path(category), title:"Edit", class:'btn btn-secondary' do %>
+            <i class="fas fa-edit"></i>
+          <%end%>
+          <%= link_to admin_category_path(category), title:"Delete", method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' do %>
+            <i class="fa fa-trash"></i>
+          <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<div class="dataTables_paginate paging_simple_numbers float-right" id="dataTable_paginate">
+  <%= will_paginate categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>  
